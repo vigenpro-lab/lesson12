@@ -1,7 +1,9 @@
 from datetime import datetime
 
+"""функция которая шифрует и номер карты и номер счета"""
 
-def mask_info(input_string: str) -> str:  # функция которая шифрует и номер карты и номер счета
+
+def mask_info(input_string: str) -> str:
     parts = input_string.split()
     if len(parts) == 2:
         return f"{parts[0]} {parts[1][:6]}******{parts[1][-4:]}"
@@ -11,6 +13,9 @@ def mask_info(input_string: str) -> str:  # функция которая шиф
         return f"Счет **{input_string[-4:]}"
 
 
-def convert_date(data: str) -> str:  # функция которая возвращет дату
+"""функция которая возвращет дату"""
+
+
+def convert_date(data: str) -> str:
     beta = datetime.strptime(data, '%Y-%m-%dT%H:%M:%S.%f')
     return beta.strftime('%d.%m.%Y')

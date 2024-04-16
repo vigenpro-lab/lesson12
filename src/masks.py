@@ -1,6 +1,12 @@
-def number_cart_mask(number: str) -> str: #функция - которая шифрует номер карты
+"""функция - которая шифрует номер карты"""
+
+
+def number_cart_mask(number: str) -> str:
     return f"{number[:4]} {number[5:7]}** **** {number[-4:]}"
 
 
-def account_mask(number: str) -> str:  #функция - которая шифрует номер счета
+"""функция - которая шифрует номер счета"""
+
+
+def account_mask(number: str) -> str:
     return f"**{number[-4:]}"
