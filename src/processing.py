@@ -25,9 +25,9 @@ def filter_state(data: List[Dict[Any, Any]], state='EXECUTED') -> List[Dict[Any,
     return answer
 
 
-print(filter_state(data_for_filter_state))  # выводит словари где state = EXECUTED
+# print(filter_state(data_for_filter_state))  # выводит словари где state = EXECUTED
 
-print(filter_state(data_for_filter_state, 'CANCELED'))  # выводит словари где state = CANCELED
+# print(filter_state(data_for_filter_state, 'CANCELED'))  # выводит словари где state = CANCELED
 
 
 def sort_date(data: List[Dict[Any, Any]], order='desc') -> List[Dict[Any, Any]]:  # desc означает "по убыванию"
@@ -45,4 +45,4 @@ def sort_date(data: List[Dict[Any, Any]], order='desc') -> List[Dict[Any, Any]]:
     return answer
 
 
-print(sort_date(data_for_sort_date, input()))  # выводит новые отсортированные словари по дате
+# print(sort_date(data_for_sort_date, input()))  # выводит новые отсортированные словари по дате
