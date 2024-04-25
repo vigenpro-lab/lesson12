@@ -1,15 +1,14 @@
 from datetime import datetime
+from src.masks import number_cart_mask, account_mask
 
 
 def mask_info(input_string: str) -> str:
     """функция которая шифрует и номер карты и номер счета"""
-    parts = input_string.split()
-    if len(parts) == 2:
-        return f"{parts[0]} {parts[1][:6]}******{parts[1][-4:]}"
-    elif len(parts) == 3:
-        return f"{parts[0]} {parts[1]} {parts[2][:6]}******{parts[2][-4:]}"
-    elif parts[0] == "Счет":
-        return f"Счет **{input_string[-4:]}"
+    parts = input_string.split(" ")
+    if parts[0] == "Счет":
+        return f"Счет {account_mask(parts[-1])}"
+    else:
+        return f'{" ".join(parts[:-1])} {number_cart_mask(parts[-1])}'
 
 
 def convert_date(data: str) -> str:

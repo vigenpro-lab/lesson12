@@ -44,5 +44,4 @@ def sort_date(data: List[Dict[Any, Any]], order='desc') -> List[Dict[Any, Any]]:
         answer = sorted(data, key=get_dict)
     return answer
 
-
 # print(sort_date(data_for_sort_date, input()))  # выводит новые отсортированные словари по дате
