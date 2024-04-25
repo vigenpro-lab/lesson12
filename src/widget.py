@@ -15,3 +15,5 @@ def convert_date(data: str) -> str:
     """функция которая возвращет дату"""
     beta = datetime.strptime(data, '%Y-%m-%dT%H:%M:%S.%f')
     return beta.strftime('%d.%m.%Y')
+
+
