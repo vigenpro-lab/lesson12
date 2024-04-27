@@ -1,5 +1,6 @@
 from datetime import datetime
-from src.masks import number_cart_mask, account_mask
+
+from src.masks import account_mask, number_cart_mask
 
 
 def mask_info(input_string: str) -> str:
@@ -13,7 +14,5 @@ def mask_info(input_string: str) -> str:
 
 def convert_date(data: str) -> str:
     """функция которая возвращет дату"""
-    beta = datetime.strptime(data, '%Y-%m-%dT%H:%M:%S.%f')
-    return beta.strftime('%d.%m.%Y')
-
-
+    beta = datetime.strptime(data, "%Y-%m-%dT%H:%M:%S.%f")
+    return beta.strftime("%d.%m.%Y")
