@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, List, Dict
+from typing import Any, List, Dict, Literal
 
 data_for_filter_state = [
     {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
@@ -16,7 +16,7 @@ data_for_sort_date = [
 ]
 
 
-def filter_state(data: List[Dict[Any, Any]], state='EXECUTED') -> List[Dict[Any, Any]]:
+def filter_state(data: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """функция для фильтра словарей по state"""
     answer = []
     for i in data:
@@ -30,13 +30,13 @@ def filter_state(data: List[Dict[Any, Any]], state='EXECUTED') -> List[Dict[Any,
 # print(filter_state(data_for_filter_state, 'CANCELED'))  # выводит словари где state = CANCELED
 
 
-def sort_date(data: List[Dict[Any, Any]], order='desc') -> List[Dict[Any, Any]]:  # desc означает "по убыванию"
-    """функция для сортировки словарей по дате"""
+def sort_date(data: List[Dict[str, Any]], order: Literal["desc", "asc"] = "desc") -> List[Dict[str, Any]]:
+    """функция для сортировки словарей по дате, desc означает "по убыванию"""
 
-    def get_dict(dict):
+    def get_dict(item: Dict[str, Any]) -> datetime:
         """функция примнимает словарь и возвращает объект даты. Для того чтоб-
          -потом использовать функцию в качесиве ключа сотрировки"""
-        return datetime.fromisoformat(dict['date'])
+        return datetime.fromisoformat(item['date'])
 
     if order == 'desc':
         answer = sorted(data, key=get_dict, reverse=True)
