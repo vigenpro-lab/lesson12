@@ -1,26 +1,26 @@
 from datetime import datetime
-from typing import Any, Dict, List, Literal
+from typing import Any, List, Dict
 
 data_for_filter_state = [
-    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
+    {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
+    {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
+    {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
+    {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}
 ]
 
 data_for_sort_date = [
-    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
+    {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
+    {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
+    {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
+    {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}
 ]
 
 
-def filter_state(data: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
+def filter_state(data: List[Dict[Any, Any]], state='EXECUTED') -> List[Dict[Any, Any]]:
     """функция для фильтра словарей по state"""
     answer = []
     for i in data:
-        if i.get("state") == state:
+        if i.get('state') == state:
             answer.append(i)
     return answer
 
@@ -30,15 +30,15 @@ def filter_state(data: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Di
 # print(filter_state(data_for_filter_state, 'CANCELED'))  # выводит словари где state = CANCELED
 
 
-def sort_date(data: List[Dict[str, Any]], order: Literal["desc", "asc"] = "desc") -> List[Dict[str, Any]]:
-    """функция для сортировки словарей по дате, desc означает "по убыванию"""
+def sort_date(data: List[Dict[Any, Any]], order='desc') -> List[Dict[Any, Any]]:  # desc означает "по убыванию"
+    """функция для сортировки словарей по дате"""
 
-    def get_dict(item: Dict[str, Any]) -> datetime:
+    def get_dict(dict):
         """функция примнимает словарь и возвращает объект даты. Для того чтоб-
-        -потом использовать функцию в качесиве ключа сотрировки"""
-        return datetime.fromisoformat(item["date"])
+         -потом использовать функцию в качесиве ключа сотрировки"""
+        return datetime.fromisoformat(dict['date'])
 
-    if order == "desc":
+    if order == 'desc':
         answer = sorted(data, key=get_dict, reverse=True)
     else:
         answer = sorted(data, key=get_dict)
