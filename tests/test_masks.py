@@ -1,6 +1,6 @@
 import pytest
 
-from src.masks import number_cart_mask, account_mask
+from src.masks import account_mask, number_cart_mask
 
 
 @pytest.mark.parametrize(
@@ -11,8 +11,6 @@ def test_number_cart_mask(x: str, answer: str) -> None:
     assert number_cart_mask(x) == answer
 
 
-@pytest.mark.parametrize(
-    "x, answer", [("73654108430135874305", "**4305"), ("1234567890123456", "**3456")]
-)
+@pytest.mark.parametrize("x, answer", [("73654108430135874305", "**4305"), ("1234567890123456", "**3456")])
 def test_account_mask(x: str, answer: str) -> None:
     assert account_mask(x) == answer

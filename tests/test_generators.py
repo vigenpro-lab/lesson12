@@ -1,6 +1,8 @@
-import pytest
 from typing import List
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+
+import pytest
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency() -> None:
@@ -26,12 +28,21 @@ def test_filter_by_currency_empty_list() -> None:
     assert len(answer) == number
 
 
-@pytest.mark.parametrize("transactions, expected_descriptions", [
-    ([{"description": "Перевод организации"}], ["Перевод организации"]),  # тест с одной транзакцией
-    ([{"description": "Перевод со счета на счет"}, {"description": "Покупка товаров"},  # тест с тремя транзакциями
-      {"description": "Списание средств"}], ["Перевод со счета на счет", "Покупка товаров", "Списание средств"]),
-    ([], [])  # тест с пустым списком транзакций
-])
+@pytest.mark.parametrize(
+    "transactions, expected_descriptions",
+    [
+        ([{"description": "Перевод организации"}], ["Перевод организации"]),  # тест с одной транзакцией
+        (
+            [
+                {"description": "Перевод со счета на счет"},
+                {"description": "Покупка товаров"},  # тест с тремя транзакциями
+                {"description": "Списание средств"},
+            ],
+            ["Перевод со счета на счет", "Покупка товаров", "Списание средств"],
+        ),
+        ([], []),  # тест с пустым списком транзакций
+    ],
+)
 def test_transaction_descriptions(transactions: List[dict], expected_descriptions: List[str]) -> None:
     answer = list(transaction_descriptions(transactions))
     assert answer == expected_descriptions
@@ -46,7 +57,7 @@ def test_card_number_generator() -> None:
         "0000 0000 0000 0002",
         "0000 0000 0000 0003",
         "0000 0000 0000 0004",
-        "0000 0000 0000 0005"
+        "0000 0000 0000 0005",
     ]
 
     answer = list(card_number_generator(start, finish))

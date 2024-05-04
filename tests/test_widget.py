@@ -1,6 +1,8 @@
+from typing import List, Tuple
+
 import pytest
-from typing import Tuple, List
-from src.widget import mask_info, convert_date
+
+from src.widget import convert_date, mask_info
 
 
 @pytest.fixture
@@ -18,7 +20,7 @@ def date_data() -> List[Tuple[str, str]]:
     return [
         ("2019-07-03T18:35:29.512364", "03.07.2019"),
         ("2022-04-30T12:00:00.000000", "30.04.2022"),
-        ("2024-04-30T00:00:00.000000", "30.04.2024")
+        ("2024-04-30T00:00:00.000000", "30.04.2024"),
     ]
 
 
