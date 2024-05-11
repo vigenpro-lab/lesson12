@@ -1,0 +1,3 @@
+test_function_error_file error: ValueError. Inputs: (), {}
+test_function_success_file ok
+test_function_error_file error: ValueError. Inputs: (), {}
