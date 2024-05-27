@@ -7,8 +7,9 @@ API_KEY = os.getenv("api_keys")
 
 
 def read_json_file(fp: str) -> List[Dict[str, Union[str, float]]]:
+    """Читает JSON файл и возвращает данные в виде списка словарей"""
     try:
-        with open(fp, 'r') as file:
+        with open(fp, "r") as file:
             data = json.load(file)
             if isinstance(data, list):
                 return data
@@ -23,6 +24,7 @@ def read_json_file(fp: str) -> List[Dict[str, Union[str, float]]]:
 
 
 def transactions_rub_to_usd(curren: str) -> Union[float, Any]:
+    """Получает текущий курс валюты по отношению к рублю (RUB) с использованием внешнего API"""
     url = f"https://v6.exchangerate-api.com/v6/92038b02fd9e7e1c6b8b993d/latest/USD={curren}"
     head = {"apikey": API_KEY}
     try:
@@ -31,25 +33,25 @@ def transactions_rub_to_usd(curren: str) -> Union[float, Any]:
         response_data = response.json()
         return response_data["rates"]["RUB"]
     except requests.exceptions.RequestException as ef:
+        print(f"Ошибка при получении обменного курса: {ef}")
         return 1.0
 
 
-def sum_amount(beta: Dict[str, Any]) -> float:
+def sum_amount(transaction: Dict[str, Any]) -> float:
+    """Конвертирует сумму транзакции в рубли, если валюта не является USD или EUR"""
     """Возвращает сумму транзакции в рублях."""
-    # answer = 0.0
-    sum = beta.get("operationAmount", {})
-    # code = sum.get("currency", {}).get("code", "")
-    amount = float(sum.get("amount", 0.0))
-    # if code in ["USD", "EUR"]:
-    #     rate_rub = transactions_rub_to_usd(code)
-    #     answer += amount * rate_rub
-    # elif code == "RUB":
-    #     answer += amount
+    operation_amount = transaction.get("operationAmount", {})
+    currency_code = operation_amount.get("currency", {}).get("code", "")
+    amount = float(operation_amount.get("amount", 0.0))
+
+    if currency_code not in ["USD", "EUR"]:
+        rate_rub = transactions_rub_to_usd(currency_code)
+        amount *= rate_rub
 
     return amount
 
 
-beta = {
+data = {
     "id": 441945886,
     "state": "EXECUTED",
     "date": "2019-08-26T10:50:58.294041",
@@ -59,4 +61,4 @@ beta = {
     "to": "Счет 64686473678894779589",
 }
 
-print(sum_amount(beta))
+print(sum_amount(data))
