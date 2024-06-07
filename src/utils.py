@@ -2,6 +2,18 @@ import json
 import os
 import requests
 from typing import Any, Dict, List, Union
+import logging
+
+# Настройка логирования
+logging.basicConfig(
+    filename='utils.log',  # Имя файла для логирования
+    filemode='w',        # 'w' для перезаписи файла при каждом запуске
+    level=logging.INFO,  # Уровень логирования
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'  # Формат логов
+)
+
+logger = logging.getLogger(__name__)
+
 
 API_KEY = os.getenv("api_keys")
 
