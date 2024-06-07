@@ -1,13 +1,14 @@
-import os
-import requests
 import logging
+import os
 from typing import Any, Union
 
+import requests
+
 logging.basicConfig(
-    filename='external_api.log',  # Имя файла для логирования
-    filemode='w',  # 'w' для перезаписи файла при каждом запуске
+    filename="external_api.log",  # Имя файла для логирования
+    filemode="w",  # 'w' для перезаписи файла при каждом запуске
     level=logging.INFO,  # Уровень логирования
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'  # Формат логов
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # Формат логов
 )
 
 logger = logging.getLogger(__name__)

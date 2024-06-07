@@ -1,6 +1,7 @@
 import unittest
-from unittest.mock import patch, mock_open, MagicMock
-from src.utils import read_json_file, transactions_rub_to_usd, sum_amount
+from unittest.mock import MagicMock, mock_open, patch
+
+from src.utils import read_json_file, sum_amount, transactions_rub_to_usd
 
 
 class TestMyModule(unittest.TestCase):
