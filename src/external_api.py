@@ -1,19 +1,21 @@
-import os
-import requests
 import logging
+import os
 from typing import Any, Union
+
+import requests
 
 # Настройка логирования
 logging.basicConfig(
-    filename='external_api.log',  # Имя файла для логирования
-    filemode='w',                 # 'w' для перезаписи файла при каждом запуске
-    level=logging.INFO,           # Уровень логирования
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'  # Формат логов
+    filename="external_api.log",  # Имя файла для логирования
+    filemode="w",  # 'w' для перезаписи файла при каждом запуске
+    level=logging.INFO,  # Уровень логирования
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # Формат логов
 )
 
 logger = logging.getLogger(__name__)
 
 API_KEY = os.getenv("api_keys")
+
 
 def get_currency_rate(curren: str) -> Union[float, Any]:
     """Получает текущий курс валюты по отношению к рублю (RUB) с использованием внешнего API"""
