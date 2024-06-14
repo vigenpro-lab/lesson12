@@ -4,7 +4,6 @@ from typing import Any, Union
 
 import requests
 
-# Настройка логирования
 logging.basicConfig(
     filename="external_api.log",  # Имя файла для логирования
     filemode="w",  # 'w' для перезаписи файла при каждом запуске

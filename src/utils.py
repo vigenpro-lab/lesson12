@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Union
 
 import requests
 
-# Настройка логирования
 logging.basicConfig(
     filename="utils.log",  # Имя файла для логирования
     filemode="w",  # 'w' для перезаписи файла при каждом запуске
@@ -14,7 +13,6 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-
 
 API_KEY = os.getenv("api_keys")
 
